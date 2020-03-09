@@ -29,6 +29,18 @@ public interface UpdateBaseInfo {
 
     long getFileSize();
 
+    String getDonateUrl();
+
+    String getForumUrl();
+
+    String getWebsiteUrl();
+
+    String getNewsUrl();
+
+    String getMaintainer();
+
+    String getMaintainerUrl();
+
     String getHash();
 
     String getWhatsNew();

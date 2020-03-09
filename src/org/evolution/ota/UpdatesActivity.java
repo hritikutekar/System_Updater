@@ -92,6 +92,7 @@ public class UpdatesActivity extends UpdatesListActivity {
 
     private SharedPreferences sharedPref;
 
+    private ExtrasFragment mExtrasFragment;
     private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
@@ -187,6 +188,10 @@ public class UpdatesActivity extends UpdatesListActivity {
                 Animation.RELATIVE_TO_SELF, 0.5f);
         mRefreshAnimation.setInterpolator(new LinearInterpolator());
         mRefreshAnimation.setDuration(1000);
+        mExtrasFragment = new ExtrasFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.extras_view, mExtrasFragment)
+                .commit();
     }
 
     @Override
@@ -282,6 +287,7 @@ public class UpdatesActivity extends UpdatesListActivity {
 
     private void loadUpdatesList(File jsonFile, boolean manualRefresh)
             throws IOException, JSONException {
+        mExtrasFragment.updatePrefs(Utils.parseJson(jsonFile, false));
         Log.d(TAG, "Adding remote updates");
         UpdaterController controller = mUpdaterService.getUpdaterController();
 
